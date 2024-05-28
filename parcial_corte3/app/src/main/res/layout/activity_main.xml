@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="333dp"
+        android:layout_height="550dp"
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:orientation="vertical"
+        android:background="@color/Gris_claro">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mi Login"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/black"/>
+            
+    </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="80dp"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/edt_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/edt_contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/btn_ingresar"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Ingresar"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/azul_marino"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot password?"
+            android:layout_marginTop="150dp"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:backgroundTint="@color/azul_marino"/>
+        
+
+</LinearLayout>
+
+
+</LinearLayout>
