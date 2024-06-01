@@ -69,7 +69,7 @@ public class Home extends Fragment {
                     recibirRespuesta(new JSONObject(response));
                 } catch (JSONException e){
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Error en el servidor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -79,9 +79,8 @@ public class Home extends Fragment {
             }
         });
 
-        RequestQueue rq = Volley.newRequestQueue(getActivity());
+        RequestQueue rq = Volley.newRequestQueue(getContext());
         rq.add(miPedido);
-
 
     }
 
