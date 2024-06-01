@@ -7,7 +7,7 @@
         />
 
     <item
-        android:id="@+id/naf_inicio2"
+        android:id="@+id/naf_solicitar"
         android:title="Solicitar comic"
         android:icon="@drawable/ic_soli"
         />

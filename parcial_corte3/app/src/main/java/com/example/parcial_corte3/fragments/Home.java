@@ -3,17 +3,22 @@ package com.example.parcial_corte3.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.parcial_corte3.R;
+import com.example.parcial_corte3.adaptadores.PersonajeAdaptador;
 import com.example.parcial_corte3.clases.personajes;
 
 import org.json.JSONException;
@@ -64,21 +69,43 @@ public class Home extends Fragment {
                     recibirRespuesta(new JSONObject(response));
                 } catch (JSONException e){
                     e.printStackTrace();
-
+                    Toast.makeText(getActivity(), "Error en el servidor", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(getActivity(), "Error en el servidor", Toast.LENGTH_SHORT).show();
             }
         });
 
-
+        RequestQueue rq = Volley.newRequestQueue(getActivity());
+        rq.add(miPedido);
 
 
     }
 
-    private void recibirRespuesta(JSONObject jsonObject) {
+    private void recibirRespuesta(JSONObject respuesta) {
+        try {
+            for (int i=0; i<=respuesta.getJSONArray("results").length();i++){
+
+                int id = respuesta.getJSONArray("results").getJSONObject(i).getInt("id");
+                String name = respuesta.getJSONArray("results").getJSONObject(i).getString("name");
+                String description = respuesta.getJSONArray("results").getJSONObject(i).getString("description");
+                String path = respuesta.getJSONArray("results").getJSONObject(i).getString("path");
+                String extension = respuesta.getJSONArray("results").getJSONObject(i).getString("extension");
+
+                personajes p = new personajes(id, name, description, path, extension);
+                listaPersonaje.add(p);
+
+                rcv_marvel.setLayoutManager(new LinearLayoutManager(getActivity()));
+                rcv_marvel.setAdapter(new PersonajeAdaptador(listaPersonaje));
+
+
+            }
+        }catch (JSONException e){
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "Error en el servidor", Toast.LENGTH_SHORT).show();
+        }
     }
 }
