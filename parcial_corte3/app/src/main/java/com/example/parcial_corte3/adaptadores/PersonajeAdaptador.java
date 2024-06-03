@@ -46,6 +46,7 @@ public class PersonajeAdaptador extends RecyclerView.Adapter<PersonajeAdaptador.
         TextView txt_id, txt_nombre_personaje, txt_descripcion;
         ImageView img_personaje;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_id = itemView.findViewById(R.id.txt_id);
@@ -58,8 +59,10 @@ public class PersonajeAdaptador extends RecyclerView.Adapter<PersonajeAdaptador.
             txt_id.setText(dato.getId());
             txt_nombre_personaje.setText(dato.getName());
             txt_descripcion.setText(dato.getDescription());
+
+            String imageURL = dato.getPath() + "." + dato.getExtension();
             // imagen picasso
-            Picasso.get().load(dato.getPath()).into(img_personaje);
+            Picasso.get().load(imageURL).into(img_personaje);
 
         }
 

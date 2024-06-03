@@ -87,22 +87,21 @@ public class Home extends Fragment {
     private void recibirRespuesta(JSONObject respuesta) {
         try {
 
-            for (int i=0; i<=respuesta.getJSONArray("results").length();i++){
+            for (int i=0; i<=respuesta.getJSONObject("data").getJSONArray("results").length();i++){
 
-                int id = respuesta.getJSONArray("results").getJSONObject(i).getInt("id");
-                String nombre = respuesta.getJSONArray("results").getJSONObject(i).getString("name");
-                String descripcion = respuesta.getJSONArray("results").getJSONObject(i).getString("description");
-                String ruta = respuesta.getJSONArray("results").getJSONObject(i).getString("path");
-                String extension = respuesta.getJSONArray("results").getJSONObject(i).getString("extension");
+                int id = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getInt("id");
+                String nombre = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("name");
+                String descripcion = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("description");
+                String ruta = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("path");
+                String extension = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("extension");
 
                 personajes p = new personajes(id, nombre, descripcion, ruta, extension);
                 listaPersonaje.add(p);
 
-                rcv_marvel.setLayoutManager(new LinearLayoutManager(getContext()));
-                rcv_marvel.setAdapter(new PersonajeAdaptador(listaPersonaje));
-
-
             }
+
+            rcv_marvel.setLayoutManager(new LinearLayoutManager(getContext()));
+            rcv_marvel.setAdapter(new PersonajeAdaptador(listaPersonaje));
         }catch (JSONException e){
             e.printStackTrace();
             Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
