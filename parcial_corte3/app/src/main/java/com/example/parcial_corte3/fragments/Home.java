@@ -79,6 +79,7 @@ public class Home extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("Volley", "Error"+ error.toString());
                 Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
             }
         });
@@ -87,7 +88,7 @@ public class Home extends Fragment {
         rq.add(miPedido);
 
     }
-
+    // no sirve el api ARREGLARLO
     private void recibirRespuesta(JSONObject respuesta) {
         try {
             JSONArray results = respuesta.getJSONObject("data").getJSONArray("results");
@@ -95,6 +96,7 @@ public class Home extends Fragment {
 
                 int id = results.getJSONObject(i).getInt("id");
                 JSONObject personaje = results.getJSONObject(i);
+
                 String nombre = results.getJSONObject(i).getString("name");
                 String descripcion = results.getJSONObject(i).getString("description");
                 String ruta = personaje.getJSONObject("thumbnail").getString("path");
@@ -107,6 +109,8 @@ public class Home extends Fragment {
 
             rcv_marvel.setLayoutManager(new LinearLayoutManager(getContext()));
             rcv_marvel.setAdapter(new PersonajeAdaptador(listaPersonaje));
+
+
         }catch (JSONException e){
             e.printStackTrace();
             Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
