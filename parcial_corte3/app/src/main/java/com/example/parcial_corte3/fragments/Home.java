@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.example.parcial_corte3.R;
 import com.example.parcial_corte3.adaptadores.PersonajeAdaptador;
 import com.example.parcial_corte3.clases.personajes;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,12 +62,14 @@ public class Home extends Fragment {
     }
 
     public void cargarInformacion() { // recogiendo la info del api de marvel
-        String url = "https://gateway.marvel.com:443/v1/public/characters?apikey=f2504a0cfb1304478b67f0c140fc624d";
+        String url = "https://gateway.marvel.com:443/v1/public/characters?ts=1717464391&apikey=f2504a0cfb1304478b67f0c140fc624d&hash=6c32ab4bbde49d4466aeca72ccbb101b";
+
 
         StringRequest miPedido = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
+                    Log.d("API_RESPONSE",response);
                     recibirRespuesta(new JSONObject(response));
                 } catch (JSONException e){
                     e.printStackTrace();
@@ -86,14 +90,14 @@ public class Home extends Fragment {
 
     private void recibirRespuesta(JSONObject respuesta) {
         try {
+            JSONArray results = respuesta.getJSONObject("data").getJSONArray("results");
+            for (int i=0; i<=results.length();i++){
 
-            for (int i=0; i<=respuesta.getJSONObject("data").getJSONArray("results").length();i++){
-
-                int id = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getInt("id");
-                String nombre = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("name");
-                String descripcion = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("description");
-                String ruta = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("path");
-                String extension = respuesta.getJSONObject("data").getJSONArray("results").getJSONObject(i).getString("extension");
+                int id = results.getJSONObject(i).getInt("id");
+                String nombre = results.getJSONObject(i).getString("name");
+                String descripcion = results.getJSONObject(i).getString("description");
+                String ruta = respuesta.getJSONObject("thumbnail").getString("path");
+                String extension = respuesta.getJSONObject("thumbnail").getString("extension");
 
                 personajes p = new personajes(id, nombre, descripcion, ruta, extension);
                 listaPersonaje.add(p);
