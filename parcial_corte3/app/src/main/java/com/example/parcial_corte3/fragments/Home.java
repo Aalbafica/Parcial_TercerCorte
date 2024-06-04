@@ -94,10 +94,11 @@ public class Home extends Fragment {
             for (int i=0; i<=results.length();i++){
 
                 int id = results.getJSONObject(i).getInt("id");
+                JSONObject personaje = results.getJSONObject(i);
                 String nombre = results.getJSONObject(i).getString("name");
                 String descripcion = results.getJSONObject(i).getString("description");
-                String ruta = respuesta.getJSONObject("thumbnail").getString("path");
-                String extension = respuesta.getJSONObject("thumbnail").getString("extension");
+                String ruta = personaje.getJSONObject("thumbnail").getString("path");
+                String extension = personaje.getJSONObject("thumbnail").getString("extension");
 
                 personajes p = new personajes(id, nombre, descripcion, ruta, extension);
                 listaPersonaje.add(p);
