@@ -9,15 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_URL = "http://192.168.1.3/apiPHP/Register.php";
+    private static final String REGISTER_URL = "http://192.168.1.3/apiPHP/Registro.php";
     private Map<String,String> params;
     public RegisterRequest(String nombre, String email, String password, String fechaNacimiento, Response.Listener<String> listener){
         super(Method.POST, REGISTER_URL, listener, null);
         params = new HashMap<>();
         params.put("nombre",nombre);
-        params.put("email",email);
-        params.put("password",password);
-        params.put("fecha_nacimiento",fechaNacimiento);
+        params.put("correo",email);
+        params.put("contrasena",password);
+        params.put("fecha",fechaNacimiento);
     }
 
     @Nullable

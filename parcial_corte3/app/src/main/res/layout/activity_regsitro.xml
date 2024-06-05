@@ -66,7 +66,7 @@
 
 
     <EditText
-        android:id="@+id/edt_user"
+        android:id="@+id/edt_nombre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Digite nombre"

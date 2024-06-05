@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class Regsitro extends AppCompatActivity {
 
-    EditText edt_user, edt_correo, edt_password, edt_fechaNacimiento;
+    EditText edt_nombre, edt_correo, edt_password, edt_fechaNacimiento;
     Button btn_registrar;
 
 
@@ -30,7 +30,7 @@ public class Regsitro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regsitro);
 
-        edt_user = findViewById(R.id.edt_user);
+        edt_nombre = findViewById(R.id.edt_nombre);
         edt_correo = findViewById(R.id.edt_correo);
         edt_password = findViewById(R.id.edt_password);
         edt_fechaNacimiento = findViewById(R.id.edt_fechaNacimiento);
@@ -41,7 +41,7 @@ public class Regsitro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // va a recibir cada uno de los datos del editText
-                String nombre = edt_user.getText().toString();
+                String nombre = edt_nombre.getText().toString();
                 String correo = edt_correo.getText().toString();
                 String password = edt_password.getText().toString();
                 String fecha_nacimiento = edt_fechaNacimiento.getText().toString();
