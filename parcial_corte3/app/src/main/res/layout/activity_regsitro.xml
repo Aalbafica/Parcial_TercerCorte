@@ -30,7 +30,7 @@
       android:layout_width="410dp"
       android:layout_height="100dp"
       android:orientation="vertical"
-      android:layout_marginTop="150dp"
+      android:layout_marginTop="130dp"
       android:layout_marginBottom="30dp"
       android:gravity="center">
 
@@ -96,7 +96,7 @@
         />
 
     <EditText
-        android:id="@+id/edt_password"
+        android:id="@+id/edt_contrasena"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Digite contraseña"
@@ -111,7 +111,7 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/edt_fechaNacimiento"
+        android:id="@+id/edt_fecha"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Digite la fecha de nacimiento"

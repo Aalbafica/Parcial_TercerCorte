@@ -11,13 +11,13 @@ import java.util.Map;
 public class RegisterRequest extends StringRequest {
     private static final String REGISTER_URL = "http://192.168.1.3/apiPHP/Registro.php";
     private Map<String,String> params;
-    public RegisterRequest(String nombre, String email, String password, String fechaNacimiento, Response.Listener<String> listener){
-        super(Method.POST, REGISTER_URL, listener, null);
+    public RegisterRequest(String nombre, String correo, String contrasena, String fecha, Response.Listener<String> listener, Response.ErrorListener errorListener){
+        super(Method.POST, REGISTER_URL, listener, errorListener);
         params = new HashMap<>();
         params.put("nombre",nombre);
-        params.put("correo",email);
-        params.put("contrasena",password);
-        params.put("fecha",fechaNacimiento);
+        params.put("correo",correo);
+        params.put("contrasena",contrasena);
+        params.put("fecha",fecha);
     }
 
     @Nullable

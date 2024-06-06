@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class Regsitro extends AppCompatActivity {
 
-    EditText edt_nombre, edt_correo, edt_password, edt_fechaNacimiento;
+    EditText edt_nombre, edt_correo, edt_contrasena, edt_fecha;
     Button btn_registrar;
 
 
@@ -32,8 +32,8 @@ public class Regsitro extends AppCompatActivity {
 
         edt_nombre = findViewById(R.id.edt_nombre);
         edt_correo = findViewById(R.id.edt_correo);
-        edt_password = findViewById(R.id.edt_password);
-        edt_fechaNacimiento = findViewById(R.id.edt_fechaNacimiento);
+        edt_contrasena = findViewById(R.id.edt_contrasena);
+        edt_fecha = findViewById(R.id.edt_fecha);
 
         btn_registrar = findViewById(R.id.btn_registrar);
 
@@ -43,9 +43,9 @@ public class Regsitro extends AppCompatActivity {
                 // va a recibir cada uno de los datos del editText
                 String nombre = edt_nombre.getText().toString();
                 String correo = edt_correo.getText().toString();
-                String password = edt_password.getText().toString();
-                String fecha_nacimiento = edt_fechaNacimiento.getText().toString();
-                Log.d("Registro", "Datos: " + nombre + ", " + correo + ", " + password + ", " + fecha_nacimiento);
+                String contrasena = edt_contrasena.getText().toString();
+                String fecha = edt_fecha.getText().toString();
+                // Log.d("Registro", "Datos: " + nombre + ", " + correo + ", " + password + ", " + fecha_nacimiento);
 
 
                 Response.Listener<String> respoListener = new Response.Listener<String>() {
@@ -53,7 +53,7 @@ public class Regsitro extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         try {
-                            Log.d("Registro1", "Respuesta del servidor: " + response);
+                            // Log.d("Registro1", "Respuesta del servidor: " + response);
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
@@ -61,7 +61,8 @@ public class Regsitro extends AppCompatActivity {
                                 Intent entrar = new Intent(Regsitro.this, MainActivity.class);
                                 startActivity(entrar);
                             }else{
-                                Toast.makeText(Regsitro.this, "Error en el Registro", Toast.LENGTH_LONG).show();
+                                String error = jsonResponse.optString("error2", "Registro fallido");
+                                Toast.makeText(Regsitro.this, error, Toast.LENGTH_LONG).show();
                             }
 
                         }catch (JSONException e){
@@ -70,9 +71,11 @@ public class Regsitro extends AppCompatActivity {
                     }
                 };
 
-                Log.d("Registro", "Boton presionado");
+                Response.ErrorListener errorListener = error -> Toast.makeText(Regsitro.this, "Error", Toast.LENGTH_LONG).show();
+
+                // Log.d("Registro", "Boton presionado");
                 // objeto Request
-                RegisterRequest registerRequest = new RegisterRequest(nombre, correo, password, fecha_nacimiento, respoListener);
+                RegisterRequest registerRequest = new RegisterRequest(nombre, correo, contrasena, fecha, respoListener, errorListener);
                 RequestQueue queue = Volley.newRequestQueue(Regsitro.this);
                 queue.add(registerRequest);
 
