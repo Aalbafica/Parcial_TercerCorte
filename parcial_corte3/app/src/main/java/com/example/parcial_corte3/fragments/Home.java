@@ -73,14 +73,14 @@ public class Home extends Fragment {
                     recibirRespuesta(new JSONObject(response));
                 } catch (JSONException e){
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error en el servidor1", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", "Error"+ error.toString());
-                Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error en el servidor2", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,7 +113,7 @@ public class Home extends Fragment {
 
         }catch (JSONException e){
             e.printStackTrace();
-            Toast.makeText(getContext(), "Error en el servidor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error en el servidor3", Toast.LENGTH_SHORT).show();
         }
     }
 }
