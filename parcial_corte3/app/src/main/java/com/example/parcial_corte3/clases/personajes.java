@@ -4,16 +4,17 @@ public class personajes {
     private int id;
     private String name;
     private String description;
-    private String path; // imagen ruta
-    private String extension; // tipo de imagen (jpg, png, etc..)
 
-    public personajes(int id, String name, String description, String path, String extension) {
+    private String image;
+
+    public personajes(int id, String name, String description, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.path = path;
-        this.extension = extension;
+        this.image = image;
     }
+
+
 
     public int getId() {
         return id;
@@ -39,19 +40,11 @@ public class personajes {
         this.description = description;
     }
 
-    public String getPath() {
-        return path;
+    public String getImage() {
+        return image;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

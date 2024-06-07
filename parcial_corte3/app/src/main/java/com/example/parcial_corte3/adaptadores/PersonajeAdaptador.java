@@ -59,10 +59,9 @@ public class PersonajeAdaptador extends RecyclerView.Adapter<PersonajeAdaptador.
             txt_id.setText(dato.getId());
             txt_nombre_personaje.setText(dato.getName());
             txt_descripcion.setText(dato.getDescription());
-
-            String imageURL = dato.getPath() + "." + dato.getExtension();
+            ;
             // imagen picasso
-            Picasso.get().load(imageURL).into(img_personaje);
+            Picasso.get().load(dato.getImage()).into(img_personaje);
 
         }
 

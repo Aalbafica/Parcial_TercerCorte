@@ -84,7 +84,7 @@ public class Home extends Fragment {
             }
         });
 
-        RequestQueue rq = Volley.newRequestQueue(getContext());
+        RequestQueue rq = Volley.newRequestQueue(requireContext());
         rq.add(miPedido);
 
     }
@@ -92,17 +92,16 @@ public class Home extends Fragment {
     private void recibirRespuesta(JSONObject respuesta) {
         try {
             JSONArray results = respuesta.getJSONObject("data").getJSONArray("results");
-            for (int i=0; i<=results.length();i++){
+            for (int i=0; i<results.length();i++){
 
                 int id = results.getJSONObject(i).getInt("id");
-                JSONObject personaje = results.getJSONObject(i);
+
 
                 String nombre = results.getJSONObject(i).getString("name");
                 String descripcion = results.getJSONObject(i).getString("description");
-                String ruta = personaje.getJSONObject("thumbnail").getString("path");
-                String extension = personaje.getJSONObject("thumbnail").getString("extension");
+                String image = results.getJSONObject(i).getJSONObject("thumbnail").getString("path") + "." + results.getJSONObject(i).getJSONObject("thumbnail").getString("extension");
 
-                personajes p = new personajes(id, nombre, descripcion, ruta, extension);
+                personajes p = new personajes(id, nombre, descripcion,image);
                 listaPersonaje.add(p);
 
             }
