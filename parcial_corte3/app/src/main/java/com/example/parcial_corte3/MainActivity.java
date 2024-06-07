@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    String dato;
     Button btn_ingresar, btn_Registrar;
     EditText edt_usuario, edt_contrasena;
 
@@ -42,14 +41,15 @@ public class MainActivity extends AppCompatActivity {
                 String usu = edt_usuario.getText().toString();
                 String contra = edt_contrasena.getText().toString();
 
-                sharedPreferences = getSharedPreferences(dataUser, modo_private);
-                editor = sharedPreferences.edit();
 
-                editor.putString("usuario", usu);
-                editor.putString("contrasena", contra);
-                editor.apply();
 
                 if (!usu.isEmpty() && !contra.isEmpty()){
+                    sharedPreferences = getSharedPreferences(dataUser, modo_private);
+                    editor = sharedPreferences.edit();
+
+                    editor.putString("usuario", usu);
+                    editor.putString("contrasena", contra);
+                    editor.apply();
                     Intent entrar = new Intent(MainActivity.this, com.example.parcial_corte3.fragments.MainActivity.class);
                     startActivity(entrar);
                 }else {

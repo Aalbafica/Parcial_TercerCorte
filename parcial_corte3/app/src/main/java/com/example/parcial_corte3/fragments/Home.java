@@ -45,7 +45,6 @@ public class Home extends Fragment implements RecyclerViewInterface {
     personajes personajes1 = new personajes();
     RecyclerView rcv_marvel;
 
-    EditText edt_filtro;
 
 
 
@@ -111,7 +110,6 @@ public class Home extends Fragment implements RecyclerViewInterface {
         rq.add(miPedido);
 
     }
-    // ARREGLAR
     private void recibirRespuesta(JSONObject respuesta) {
         try {
             JSONArray results = respuesta.getJSONObject("data").getJSONArray("results");

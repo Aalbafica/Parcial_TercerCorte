@@ -2,7 +2,9 @@ package com.example.parcial_corte3.vista_registro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +22,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Regsitro extends AppCompatActivity {
+
+    public static final String dataUser = "dautaUser";
+
+    private static final int modo_private = Context.MODE_PRIVATE;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    String dato;
 
     EditText edt_nombre, edt_correo, edt_contrasena, edt_fecha;
     Button btn_registrar;
@@ -47,6 +58,18 @@ public class Regsitro extends AppCompatActivity {
                 String fecha = edt_fecha.getText().toString();
                 // Log.d("Registro", "Datos: " + nombre + ", " + correo + ", " + password + ", " + fecha_nacimiento);
 
+                if (!nombre.isEmpty() && !correo.isEmpty() && isValid(correo) && !contrasena.isEmpty() && !fecha.isEmpty()) {
+                    sharedPreferences = getSharedPreferences(dataUser, modo_private);
+                    editor = sharedPreferences.edit();
+
+                    editor.putString("usuario", nombre);
+                    editor.putString("correo", correo);
+                    editor.putString("contrasena", contrasena);
+                    editor.putString("fecha", fecha);
+                    editor.apply();
+                }else{
+                    Toast.makeText(Regsitro.this, "LLene los espacios en blanco o llene correctamente el correo", Toast.LENGTH_LONG).show();
+                }
 
                 Response.Listener<String> respoListener = new Response.Listener<String>() {
                     @Override
@@ -57,7 +80,7 @@ public class Regsitro extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
-                            if (success){
+                            if (success && isValid(correo)){
                                 Intent entrar = new Intent(Regsitro.this, MainActivity.class);
                                 startActivity(entrar);
                             }else{
@@ -82,5 +105,10 @@ public class Regsitro extends AppCompatActivity {
             }
         });
 
+    }
+    // metodo para validad el correo
+    private boolean isValid(String correo) {
+        String expresion = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com$";
+        return correo.matches(expresion);
     }
 }
