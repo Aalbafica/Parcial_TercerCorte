@@ -94,7 +94,7 @@ public class Home extends Fragment {
             JSONArray results = respuesta.getJSONObject("data").getJSONArray("results");
             for (int i=0; i<results.length();i++){
 
-                int id = results.getJSONObject(i).getInt("id");
+                String id = results.getJSONObject(i).getString("id");
 
 
                 String nombre = results.getJSONObject(i).getString("name");

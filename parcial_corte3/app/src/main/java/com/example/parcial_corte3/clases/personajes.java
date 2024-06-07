@@ -1,13 +1,13 @@
 package com.example.parcial_corte3.clases;
 
 public class personajes {
-    private int id;
+    private String id;
     private String name;
     private String description;
 
     private String image;
 
-    public personajes(int id, String name, String description, String image) {
+    public personajes(String id, String name, String description, String image) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -15,12 +15,11 @@ public class personajes {
     }
 
 
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
