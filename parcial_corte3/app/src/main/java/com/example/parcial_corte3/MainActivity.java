@@ -2,7 +2,9 @@ package com.example.parcial_corte3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +14,12 @@ import android.widget.Toast;
 import com.example.parcial_corte3.vista_registro.Regsitro;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String dataUser = "dataUser";
+    private static final int modo_private = Context.MODE_PRIVATE;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    String dato;
     Button btn_ingresar, btn_Registrar;
     EditText edt_usuario, edt_contrasena;
 
@@ -27,11 +34,20 @@ public class MainActivity extends AppCompatActivity {
         edt_usuario = findViewById(R.id.edt_usuario);
         edt_contrasena = findViewById(R.id.edt_contrasena);
 
+
+
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String usu = edt_usuario.getText().toString();
                 String contra = edt_contrasena.getText().toString();
+
+                sharedPreferences = getSharedPreferences(dataUser, modo_private);
+                editor = sharedPreferences.edit();
+
+                editor.putString("usuario", usu);
+                editor.putString("contrasena", contra);
+                editor.apply();
 
                 if (!usu.isEmpty() && !contra.isEmpty()){
                     Intent entrar = new Intent(MainActivity.this, com.example.parcial_corte3.fragments.MainActivity.class);
@@ -39,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(), "Llene los espacios en blanco", Toast.LENGTH_SHORT).show();
                 }
+
+
                 // *****FALTA HACER OTRA VALIDACION PARA COMPROBAR DE QUE
                 // EL USUARIO ESTE EN LA BASE DATOS, SI NO LO ESTA
                 // AVISARLE QUE NO ESTA Y SE REGISTRE PRIMERO*****

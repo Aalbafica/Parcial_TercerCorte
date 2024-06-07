@@ -4,8 +4,10 @@ public class personajes {
     private String id;
     private String name;
     private String description;
-
     private String image;
+
+    public personajes() {
+    }
 
     public personajes(String id, String name, String description, String image) {
         this.id = id;
