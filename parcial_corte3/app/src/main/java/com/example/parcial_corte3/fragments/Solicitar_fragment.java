@@ -74,12 +74,24 @@ public class Solicitar_fragment extends Fragment {
     private void recibirComics(JSONObject respuesta) {
         try {
             JSONArray results = respuesta.getJSONObject("data").getJSONArray("results");
+
             List<String> listaComics = new ArrayList<>();
 
             for (int i=0; i<results.length();i++){
-                JSONObject comics = results.getJSONObject(i).getJSONObject("comics");
-                String titulo = comics.getJSONArray("items").getJSONObject(i).getString("name");
-                listaComics.add(titulo);
+                JSONObject personaje = results.getJSONObject(i);
+                JSONObject comics = personaje.getJSONObject("comics");
+                JSONArray items = comics.getJSONArray("items");
+                for (int j=0; j<items.length();i++){
+
+                    JSONObject item = items.getJSONObject(j);
+                    String titulo = item.getString("name");
+                    listaComics.add(titulo);
+
+
+                }
+
+
+
             }
             llenarSpinner(listaComics);
         }catch (JSONException e){
