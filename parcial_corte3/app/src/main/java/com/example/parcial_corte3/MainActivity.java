@@ -13,7 +13,8 @@ import android.widget.Toast;
 
 import com.example.parcial_corte3.vista_registro.Regsitro;
 
-public class MainActivity extends AppCompatActivity {
+public class
+MainActivity extends AppCompatActivity {
     public static final String dataUser = "dataUser";
     private static final int modo_private = Context.MODE_PRIVATE;
 
